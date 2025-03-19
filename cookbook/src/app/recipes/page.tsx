@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { prisma } from "../lib/prisma";
-import slugify from "../utils/slugify";
+import { prisma } from "../../lib/prisma";
+import slugify from "../../utils/slugify";
 
 export default async function Page() {
 
