@@ -2,8 +2,12 @@
 
 import createCitationAction from "@/actions/recipe";
 import timeToNumber from "@/utils/timeToNumber";
+import { useRouter } from 'next/navigation'
+import { toast, ToastContainer } from "react-toastify";
 
 export default function Page() {
+
+    const router = useRouter();
 
     const createRecipe = async (FormData: FormData) => {
         const json = await createCitationAction({
@@ -12,8 +16,16 @@ export default function Page() {
             time: timeToNumber(FormData.get("time"))
         })
 
+        console.log(json)
+
         if (json.error) {
-            alert("Y a une erreur");
+            toast.error("La recette n'a pas pu être créée.", {
+                position: "top-left",
+                autoClose: 3000,
+                closeOnClick: true,
+                draggable: true,
+                theme: "light"
+            });
         }
     }
 
@@ -28,6 +40,7 @@ export default function Page() {
                 <input type="time" name="time" className="py-1 px-2" />
                 <button type="submit" className="bg-black text-white py-1 px-3 font-bold rounded-sm">Ajouter</button>
             </form>
+            <ToastContainer />
         </div>
     )
 }

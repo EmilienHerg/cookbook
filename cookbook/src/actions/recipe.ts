@@ -16,11 +16,12 @@ export default async function createRecipeAction(recipe: {
                 time: recipe.time
             }
         })
-    } catch {
+
+        redirect('/recipes');
+
+    } catch(error) {
         return {
             error: "Error while reacting the recipe."
         }
     }
-
-    redirect('/recipes');
 }
